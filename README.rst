@@ -1,10 +1,4 @@
-.. image:: https://badge.fury.io/py/betfair.py.png
-    :target: http://badge.fury.io/py/betfair.py
-
-.. image:: https://travis-ci.org/jmcarp/betfair.py.png?branch=master
-    :target: https://travis-ci.org/jmcarp/betfair.py
-
-betfair.py is a Python wrapper for the Betfair API
+betfair2.py is a Python wrapper for the Betfair API
 
 Installation
 ------------
@@ -18,12 +12,6 @@ Requirements
 
 - Python >= 2.7 or >= 3.3
 
-Testing
--------
-
-To run tests ::
-
-    $ py.test
 
 Application Keys
 ----------------
@@ -36,7 +24,7 @@ SSL Certificates
 
 For non-interactive login, you must generate a self-signed SSL certificate
 and upload it to your Betfair account. Betfair.py includes tools for
-simplifying this process. To create a self-signed certificate, run ::
+simplifying this process. To create a self-signed certificate, run (you must clone this repo for this to work) ::
 
     invoke ssl
 
@@ -95,3 +83,11 @@ License
 -------
 
 MIT licensed. See the bundled `LICENSE <https://github.com/jmcarp/betfair.py/blob/master/LICENSE>`_ file for more details
+
+
+Testing
+-------
+
+To run tests ::
+
+    $ py.test
