@@ -21,6 +21,11 @@ IDENTITY_URLS = collections.defaultdict(
     italy='https://identitysso.betfair.it/api/',
 )
 
+ACCOUNT_URLS = collections.defaultdict(
+    lambda: 'https://developers.betfair.com/api.betfair.com/exchange/account/json-rpc/v1',
+    italy= 'https://developers.betfair.it/api.betfair.com/exchange/account/json-rpc/v1',
+)
+
 API_URLS = collections.defaultdict(
     lambda: 'https://api.betfair.com/exchange/betting/json-rpc/v1',
     australia='https://api-au.betfair.com/exchange/betting/json-rpc/v1',
@@ -57,6 +62,10 @@ class Betfair(object):
         return API_URLS[self.locale]
 
     @property
+    def account_url(self):
+        return ACCOUNT_URLS[self.locale]
+    
+    @property
     def headers(self):
         return {
             'X-Application': self.app_key,
@@ -76,10 +85,10 @@ class Betfair(object):
         if data.get('status') != 'SUCCESS':
             raise exceptions.AuthError(response, data)
 
-    def make_api_request(self, base, method, params, codes=None, model=None):
+    def make_api_request(self, base, method, params, codes=None, model=None, url=None):
         payload = utils.make_payload(base, method, params)
         response = self.session.post(
-            self.api_url,
+            url if url else self.api_url,
             data=json.dumps(payload, cls=utils.BetfairEncoder),
             headers=self.headers,
             timeout=self.timeout,
@@ -464,6 +473,7 @@ class Betfair(object):
             'getAccountFunds',
             {'wallet': wallet},
             model=models.AccountFundsResponse,
+            url=self.account_url,
         )
 
     @utils.requires_login
@@ -497,6 +507,7 @@ class Betfair(object):
             'getAccountDetails',
             {},
             model=models.AccountDetailsResponse,
+            url=self.account_url,
         )
 
     @utils.requires_login
@@ -525,4 +536,5 @@ class Betfair(object):
             'transferFunds',
             {'from': from_, 'to': to, 'amount': amount},
             model=models.TransferResponse,
+            url=self.account_url,
         )
