@@ -23,7 +23,7 @@ IDENTITY_URLS = collections.defaultdict(
 
 ACCOUNT_URLS = collections.defaultdict(
     lambda: 'https://developers.betfair.com/api.betfair.com/exchange/account/json-rpc/v1',
-    italy= 'https://developers.betfair.it/api.betfair.com/exchange/account/json-rpc/v1',
+    italy='https://developers.betfair.it/api.betfair.com/exchange/account/json-rpc/v1',
 )
 
 API_URLS = collections.defaultdict(
@@ -64,7 +64,7 @@ class Betfair(object):
     @property
     def account_url(self):
         return ACCOUNT_URLS[self.locale]
-    
+
     @property
     def headers(self):
         return {
