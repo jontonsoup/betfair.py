@@ -5,7 +5,6 @@ import inflection
 from schematics import types
 from schematics import models
 
-
 class BetfairModelMeta(models.ModelMeta):
     """Set default `serialized_name` and `deserialize_from` of Schematics types
     to camel-cased attribute names.
@@ -17,7 +16,6 @@ class BetfairModelMeta(models.ModelMeta):
                 attr.serialized_name = attr.serialized_name or camelized
                 attr.deserialize_from = attr.deserialize_from or camelized
         return super(BetfairModelMeta, meta).__new__(meta, name, bases, attrs)
-
 
 class BetfairModel(six.with_metaclass(BetfairModelMeta, models.Model)):
 

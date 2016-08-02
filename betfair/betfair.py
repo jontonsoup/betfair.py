@@ -252,7 +252,7 @@ class Betfair(object):
     @utils.requires_login
     def list_market_catalogue(
             self, filter=None, max_results=100, market_projection=None, locale=None,
-            sort=None):
+            market_sort=None):
         """
 
         :param MarketFilter filter:
@@ -266,7 +266,8 @@ class Betfair(object):
             'Sports',
             'listMarketCatalogue',
             {'filter': filter, 'maxResults': max_results,
-             'marketProjection': market_projection, 'locale': locale},
+             'marketProjection': market_projection, 'locale': locale,
+             'sort': market_sort},
             model=models.MarketCatalogue,
         )
 

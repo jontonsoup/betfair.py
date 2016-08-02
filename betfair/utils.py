@@ -70,6 +70,21 @@ def process_result(result, model=None):
         return [model(**item) for item in result]
     return model(**result)
 
+def model_to_dict(model):
+    if isinstance(model, list):
+        d = [model_to_dict(item) for item in model]
+    else:
+        d = {}
+        for (k, v) in model.items():
+            if isinstance(v, list):
+                v = model_to_dict(v)
+            else:
+                try:
+                    v = model_to_dict(v)
+                except Exception as e:
+                    pass
+            d[k] = v
+    return d
 
 class BetfairEncoder(json.JSONEncoder):
 
