@@ -2,7 +2,7 @@ betfair2.py is a Python wrapper for the Betfair API.
 
 ## Installation
 ```Python
->> pip install betfair.py
+>> pip install git+https://github.com/BenderV/betfair2.py.git
 ```
 
 ##### Requirements
