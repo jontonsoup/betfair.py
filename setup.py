@@ -69,7 +69,7 @@ setup(
     version=find_version('betfair/__init__.py'),
     description='Python client for the Betfair API '
                 '(https://api.developer.betfair.com/)',
-    long_description=open('README.rst').read(),
+    long_description=open('README.md').read(),
     author='Joshua Carp',
     author_email='jm.carp@gmail.com',
     url='https://github.com/jmcarp/betfair.py',
